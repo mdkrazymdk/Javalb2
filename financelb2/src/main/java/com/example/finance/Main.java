@@ -14,25 +14,25 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "src/main/resources/transactions.csv"; // Укажите путь к вашему CSV-файлу.
+        String filePath = "src/main/resources/transactions.csv"; // путь к  CSV-файлу.
         CSVReader csvReader = new CSVReader();
-        List<Transaction> transactions = csvReader.readTransactions(filePath); // Считываем транзакции из CSV-файла, возвращаем список объектов Transaction.
+        List<Transaction> transactions = csvReader.readTransactions(filePath); // Считываем транзакции из CSV-файла, возвращаем список Transaction.
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // Определяем формат даты для последующего анализа.
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // Определяем дату.
 
-        double totalBalance = BalanceCalculator.calculateTotalBalance(transactions); // Рассчитываем общий баланс по всем транзакциям.
+        double totalBalance = BalanceCalculator.calculateTotalBalance(transactions); // Общий баланс 
         System.out.println("Загальний баланс: " + totalBalance);
 
-        int month = 7; // Пример: липень
-        int year = 2023; // Пример: 2023 рік
-        long transactionCount = TransactionCounter.countTransactionsByMonth(transactions, month, year); // Считаем количество транзакций за указанный месяц и год.
+        int month = 7; 
+        int year = 2023; 
+        long transactionCount = TransactionCounter.countTransactionsByMonth(transactions, month, year); // Количество транзакций за указанный месяц и год.
         System.out.println("Кількість транзакцій за " + month + "/" + year + ": " + transactionCount);
 
-        List<Transaction> topExpenses = ExpenseAnalyzer.getTop10Expenses(transactions); // Получаем список транзакций с наибольшими расходами.
+        List<Transaction> topExpenses = ExpenseAnalyzer.getTop10Expenses(transactions); //Наибольшими расходами.
         System.out.println("Топ 10 витрат:");
         topExpenses.forEach(transaction -> System.out.println(transaction.getCategory() + ": " + transaction.getAmount()));
 
-        Map<String, Double> spendingByCategory = ExpenseAnalyzerExtended.getTotalSpendingByCategory(transactions); // Анализируем расходы по категориям.
+        Map<String, Double> spendingByCategory = ExpenseAnalyzerExtended.getTotalSpendingByCategory(transactions); // Расходы по категориям.
         System.out.println("Витрати за категоріями:");
         spendingByCategory.forEach((category, amount) -> System.out.println(category + ": " + amount));
     }
